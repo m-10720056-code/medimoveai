@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MediMoveAI — From Chaos to Clarity</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-1:#071a3a;
+    --bg-2:#064a9a;
+    --accent:#00b8c9;
+    --muted:#e6f3ff;
+    --card:#ffffff;
+    --glass: rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Poppins',system-ui,Arial; margin:0; color:#072033; background:linear-gradient(180deg,var(--bg-1),var(--bg-2)); -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1150px;margin:28px auto;padding:22px;}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fff}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{width:64px;height:64px;object-fit:contain;background:#fff;padding:8px;border-radius:10px}
+  .brand h1{margin:0;font-size:20px}
+  .brand p{margin:0;font-size:12px;color:rgba(255,255,255,0.9)}
+  nav{display:flex;gap:10px;align-items:center}
+  .btn{background:linear-gradient(90deg,var(--accent),#3298ff);color:#fff;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700}
+  /* HERO */
+  .hero{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:center;margin-top:18px;color:#fff}
+  .hero h2{font-size:34px;margin:0;letter-spacing:0.6px}
+  .hero p{color:rgba(255,255,255,0.85);margin-top:10px;line-height:1.5}
+  .stats{display:flex;gap:8px;margin-top:14px}
+  .stat{background:rgba(255,255,255,0.06);padding:10px;border-radius:10px;flex:1;text-align:center}
+  .stat strong{display:block;color:var(--accent);font-size:18px}
+  .card{background:rgba(255,255,255,0.06);padding:14px;border-radius:12px;color:#fff}
+  /* sections */
+  section{margin-top:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .feature{background:#fff;border-radius:10px;padding:14px;color:#06233f;box-shadow:0 10px 30px rgba(2,12,34,0.25)}
+  .feature h4{margin:0 0 8px}
+  /* demo */
+  .demo-wrap{display:flex;gap:18px;align-items:flex-start}
+  .video{flex:1;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.35)}
+  iframe{width:100%;height:320px;border:0}
+  .side{width:320px}
+  .tools{display:flex;gap:8px;flex-wrap:wrap}
+  .tool{background:#f3fbff;padding:8px 10px;border-radius:8px;color:#064a9a;font-weight:700}
+  /* Interactive area */
+  .interactive{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+  .panel{background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(2,12,34,0.12);color:#06233f}
+  .maze-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+  .cell{background:#eaf6ff;border-radius:8px;padding:18px;display:flex;align-items:center;justify-content:center;color:#064a9a;font-weight:700;cursor:pointer;user-select:none}
+  .cell.active{background:linear-gradient(90deg,var(--accent),#3298ff);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.15)}
+  .controls{display:flex;gap:8px;margin-top:10px}
+  .small{font-size:13px;color:#6b7a8f}
+  /* sorting game */
+  .cards{display:flex;gap:8px;flex-wrap:wrap}
+  .cardItem{background:#f8fbff;padding:8px 10px;border-radius:8px;border:1px solid #dfeefb;cursor:grab;color:#064a9a}
+  .dropzones{display:flex;gap:12px;margin-top:12px}
+  .drop{flex:1;min-height:140px;border-radius:10px;padding:12px;background:linear-gradient(180deg,#fbfeff,#f2fbff);border:2px dashed #cfefff}
+  .drop h4{margin-top:0;color:#064a9a}
+  /* footer */
+  footer{margin-top:28px;background:linear-gradient(90deg,#04102a,#06224a);padding:18px;border-radius:12px;color:#cfe9ff;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+  .qr{width:110px;border-radius:8px;background:#fff;padding:6px}
+  /* responsive */
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr}
+    .interactive{grid-template-columns:1fr}
+    .side{width:100%}
+    iframe{height:220px}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="logo.png" alt="MediMoveAI logo" id="logo">
+        <div>
+          <h1>MediMoveAI</h1>
+          <p>From Chaos to Clarity — AI Smart Mobility for Hospitals</p>
+        </div>
+      </div>
+      <nav>
+        <a class="btn" href="#demo">Watch Demo</a>
+        <a class="btn" href="#interactive">Try Live</a>
+        <a class="btn" id="langBtn">BM</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h2 id="heroTitle">FROM CHAOS TO CLARITY</h2>
+        <p id="heroSub">AI Smart Mobility for Hospitals — transforming hospital mobility through AI innovation.</p>
+        <div class="stats">
+          <div class="stat"><strong>Faster</strong><span class="small">Optimized routes for staff</span></div>
+          <div class="stat"><strong>Safer</strong><span class="small">Clear guidance for patients</span></div>
+          <div class="stat"><strong>Greener</strong><span class="small">Less paper, less waste</span></div>
+        </div>
+      </div>
+      <aside class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-weight:800">See the 45s Simulation</div>
+            <div class="small" style="margin-top:6px">A short corporate-style demo used for booth presentations</div>
+          </div>
+          <div><a class="btn" href="#demo">Play</a></div>
+        </div>
+        <div style="margin-top:12px" class="small">Perfect for booth loop playback on laptop/TV.</div>
+      </aside>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="grid3">
+      <div class="feature">
+        <h4>AI Navigation</h4>
+        <p>Real-time indoor mapping and optimized routes for patients, visitors and staff.</p>
+      </div>
+      <div class="feature">
+        <h4>Smart Scheduling</h4>
+        <p>Automated delivery and transfer scheduling to reduce waiting and overlap.</p>
+      </div>
+      <div class="feature">
+        <h4>Real-time Monitoring</h4>
+        <p>Track patient transfers, equipment movement, and bottlenecks from a unified dashboard.</p>
+      </div>
+    </section>
+
+    <!-- DEMO -->
+    <section id="demo" class="demo-wrap">
+      <div class="video">
+        <!-- Replace VIDEO_ID with YouTube id or replace iframe with local video file -->
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="MediMoveAI Simulation" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <aside class="side">
+        <div class="card">
+          <h4>Quick Demo</h4>
+          <p class="small">Play the simulation during booth presentation. Below: AI tools used to build MediMoveAI.</p>
+          <div style="margin-top:10px" class="tools">
+            <div class="tool">ChatGPT</div>
+            <div class="tool">Canva</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <h4>Impact Snapshot</h4>
+          <p class="small">Reduce confusion, save staff time, and cut paper use — all while improving patient care.</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- INTERACTIVE -->
+    <section id="interactive">
+      <h3 style="color:#fff">Try Live — Interactive Booth Tools</h3>
+      <div class="interactive">
+        <!-- MAZE PANEL -->
+        <div class="panel">
+          <h4>Find Your Way — Maze Challenge</h4>
+          <p class="small">Start at <strong>Ward A</strong>. Click tiles to create your route to <strong>Pharmacy</strong>. Press Submit to check. 30s challenge (timer starts on your first click).</p>
+          <div id="timer" style="font-weight:700;color:#064a9a;margin-bottom:8px">Timer: 00:00</div>
+          <div class="maze-grid" id="maze">
+            <!-- 6x6 cells; we'll mark Ward A and Pharmacy -->
+          </div>
+          <div class="controls">
+            <button class="btn" id="submitMaze">Submit</button>
+            <button class="btn" id="resetMaze" style="background:#fff;color:#064a9a">Reset</button>
+            <div id="mazeResult" style="margin-left:8px;font-weight:700;color:#064a9a"></div>
+          </div>
+        </div>
+
+        <!-- SORTING GAME PANEL -->
+        <div class="panel">
+          <h4>Green Movement — Sorting Game</h4>
+          <p class="small">Drag each card to the correct box: <strong>Old Hospital</strong> or <strong>Smart Hospital</strong>. Press Check to score.</p>
+          <div class="cards" id="cardsArea" aria-hidden="false">
+            <!-- cards will be injected -->
+          </div>
+          <div class="dropzones">
+            <div class="drop" id="oldBox"><h4>Old Hospital</h4></div>
+            <div class="drop" id="smartBox"><h4>Smart Hospital</h4></div>
+          </div>
+          <div style="margin-top:10px" class="controls">
+            <button class="btn" id="checkSort">Check</button>
+            <button class="btn" id="resetSort" style="background:#fff;color:#064a9a">Reset</button>
+            <div id="sortResult" style="margin-left:8px;font-weight:700;color:#064a9a"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM & TOOLS -->
+    <section style="margin-top:18px" class="grid3">
+      <div class="feature">
+        <h4>AI Tools Used</h4>
+        <p><strong>ChatGPT</strong> — idea development & script.<br><strong>Canva</strong> — design & visuals.</p>
+      </div>
+      <div class="feature">
+        <h4>Impact</h4>
+        <p>Short term: reduce navigation time, lower staff workload, cut paper use. Long term: integrate IoT & robotic delivery.</p>
+      </div>
+      <div class="feature">
+        <h4>Team</h4>
+        <p>Team MediMoveAI — [Name 1] (Presentation Lead), [Name 2] (Design & Demo Lead)</p>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div>
+          <h3 style="margin:0;color:#fff">MediMoveAI</h3>
+          <div class="small">Revolutionizing Hospital Navigation with Smart AI Mobility</div>
+        </div>
+      </div>
+
+      <div style="text-align:center">
+        <div class="small">Scan to view full demo & resources</div>
+        <img src="qrcode.png" alt="QR" class="qr">
+      </div>
+    </footer>
+  </div>
+
+<script>
+/* --------- LANGUAGE TOGGLE (EN / BM) --------- */
+const langBtn = document.getElementById('langBtn');
+let lang = 'EN';
+langBtn.addEventListener('click', ()=> {
+  if(lang === 'EN'){
+    // switch to BM
+    document.getElementById('heroTitle').innerText = 'DARIPADA KEKELIRUAN KEPADA KEJELASAN';
+    document.getElementById('heroSub').innerText = 'Mobiliti Pintar AI untuk Hospital — Mentransformasikan pergerakan hospital melalui inovasi AI.';
+    langBtn.innerText = 'EN';
+    lang = 'BM';
+  } else {
+    document.getElementById('heroTitle').innerText = 'FROM CHAOS TO CLARITY';
+    document.getElementById('heroSub').innerText = 'AI Smart Mobility for Hospitals — transforming hospital mobility through AI innovation.';
+    langBtn.innerText = 'BM';
+    lang = 'EN';
+  }
+});
+
+/* --------- MAZE SETUP (6x6) --------- */
+// We'll build a simple visual maze grid. Predefine a correct path (cell ids).
+const mazeEl = document.getElementById('maze');
+const timerEl = document.getElementById('timer');
+const mazeResult = document.getElementById('mazeResult');
+let cells = [];
+let clicked = [];
+let timer = null;
+let seconds = 0;
+const ROWS = 6, COLS = 6;
+
+// define special positions (row,col index from 0). Ward A (start) and Pharmacy (end)
+const startPos = {r:4,c:1}; // Ward A
+const endPos = {r:1,c:4};   // Pharmacy
+// define the correct path as array of coordinates (for challenge check)
+const correctPath = [
+  {r:4,c:1},{r:3,c:1},{r:2,c:1},{r:2,c:2},{r:2,c:3},{r:1,c:3},{r:1,c:4}
+];
+
+function buildMaze(){
+  mazeEl.innerHTML='';
+  cells = [];
+  for(let r=0;r<ROWS;r++){
+    for(let c=0;c<COLS;c++){
+      const id = `cell-${r}-${c}`;
+      const el = document.createElement('div');
+      el.className='cell';
+      el.id = id;
+      // label special cells
+      if(r===startPos.r && c===startPos.c) el.innerText='Ward A';
+      else if(r===endPos.r && c===endPos.c) el.innerText='Pharmacy';
+      else el.innerText='';
+      el.addEventListener('click', ()=> toggleCell(r,c, el));
+      mazeEl.appendChild(el);
+      cells.push({r,c,el});
+    }
+  }
+  resetMaze();
+}
+
+function coordsToStr(arr){ return arr.map(p=>`${p.r}-${p.c}`).join('|'); }
+const correctStr = coordsToStr(correctPath);
+
+function toggleCell(r,c,el){
+  // start timer on first click
+  if(clicked.length===0) startTimer();
+  const key = `${r}-${c}`;
+  // prevent clicking same cell twice in sequence
+  if(clicked.length>0 && clicked[clicked.length-1] === key){
+    // ignore
+    return;
+  }
+  // allow toggling selection: if already clicked anywhere remove last occurrence
+  const idx = clicked.indexOf(key);
+  if(idx>-1){ // unselect that cell and all after it
+    clicked = clicked.slice(0, idx);
+  } else {
+    clicked.push(key);
+  }
+  updateMazeUI();
+}
+
+function updateMazeUI(){
+  cells.forEach(obj=>{
+    const key = `${obj.r}-${obj.c}`;
+    if(clicked.includes(key)) obj.el.classList.add('active');
+    else obj.el.classList.remove('active');
+  });
+  mazeResult.innerText = `Steps: ${clicked.length}`;
+}
+
+function startTimer(){
+  clearInterval(timer);
+  seconds = 0;
+  timerEl.innerText = 'Timer: 00:00';
+  timer = setInterval(()=>{
+    seconds++;
+    const mm = String(Math.floor(seconds/60)).padStart(2,'0');
+    const ss = String(seconds%60).padStart(2,'0');
+    timerEl.innerText = `Timer: ${mm}:${ss}`;
+    // optionally auto-stop at 30s (challenge)
+    // if(seconds>=30){ clearInterval(timer); }
+  },1000);
+}
+
+function stopTimer(){
+  clearInterval(timer);
+}
+
+document.getElementById('submitMaze').addEventListener('click', ()=>{
+  stopTimer();
+  // compare clicked path to correctPath string
+  if(clicked.length===0){ mazeResult.innerText='Please trace a route first.'; return;}
+  const clickedStr = clicked.join('|');
+  // Build expected minimal path keys string
+  const expected = correctPath.map(p=>`${p.r}-${p.c}`).join('|');
+  const withinTime = seconds <= 30;
+  if(clickedStr === expected && withinTime){
+    mazeResult.innerText = `Correct! You beat the 30s challenge (${seconds}s) 🎉`;
+  } else if(clickedStr === expected){
+    mazeResult.innerText = `Correct path, but ${seconds}s (goal: ≤30s).`;
+  } else {
+    mazeResult.innerText = `Not optimal. MediMoveAI finds this route in seconds. Your steps: ${clicked.length}.`;
+  }
+});
+
+document.getElementById('resetMaze').addEventListener('click', resetMaze);
+function resetMaze(){
+  stopTimer();
+  clicked = [];
+  updateMazeUI();
+  timerEl.innerText = 'Timer: 00:00';
+  mazeResult.innerText = '';
+}
+
+/* ------- SORTING GAME (Drag & Drop) ------- */
+const activities = [
+  {id:'a1', text:'Print patient forms every morning', zone:'old'},
+  {id:'a2', text:'Deliver files manually between wards', zone:'old'},
+  {id:'a3', text:'Wait for staff to update schedule by hand', zone:'old'},
+  {id:'a4', text:'Carry medication list using paper clipboard', zone:'old'},
+  {id:'a5', text:'Search for equipment by walking room to room', zone:'old'},
+
+  {id:'s1', text:'Digital check-in using AI kiosk', zone:'smart'},
+  {id:'s2', text:'Navigation app guides visitors to their ward', zone:'smart'},
+  {id:'s3', text:'Real-time schedule update via mobile dashboard', zone:'smart'},
+  {id:'s4', text:'Automated delivery robot transports medicine', zone:'smart'},
+  {id:'s5', text:'Smart tracking locates equipment instantly', zone:'smart'},
+];
+
+const cardsArea = document.getElementById('cardsArea');
+const oldBox = document.getElementById('oldBox');
+const smartBox = document.getElementById('smartBox');
+const checkSortBtn = document.getElementById('checkSort');
+const resetSortBtn = document.getElementById('resetSort');
+const sortResult = document.getElementById('sortResult');
+
+function initSort(){
+  cardsArea.innerHTML='';
+  activities.forEach(act=>{
+    const el = document.createElement('div');
+    el.className='cardItem';
+    el.draggable=true;
+    el.id = act.id;
+    el.dataset.zone = act.zone;
+    el.innerText = act.text;
+    el.addEventListener('dragstart', e=> e.dataTransfer.setData('text/plain', act.id));
+    cardsArea.appendChild(el);
+  });
+  // clear drop zones
+  [oldBox, smartBox].forEach(z=> z.querySelectorAll('.cardItem').forEach(n=>n.remove()));
+  sortResult.innerText='';
+}
+
+[oldBox, smartBox].forEach(box=>{
+  box.addEventListener('dragover', e=>{ e.preventDefault(); box.style.borderColor='#64c7ff'; });
+  box.addEventListener('dragleave', e=>{ box.style.borderColor='#cfefff'; });
+  box.addEventListener('drop', e=>{
+    e.preventDefault();
+    box.style.borderColor='#cfefff';
+    const id = e.dataTransfer.getData('text/plain');
+    const node = document.getElementById(id);
+    if(node) box.appendChild(node);
+  });
+});
+
+checkSortBtn.addEventListener('click', ()=>{
+  let total = activities.length;
+  let correct = 0;
+  activities.forEach(act=>{
+    const node = document.getElementById(act.id);
+    const parent = node.parentElement;
+    if(parent === oldBox && act.zone === 'old') correct++;
+    if(parent === smartBox && act.zone === 'smart') correct++;
+  });
+  sortResult.innerText = `Score: ${correct} / ${total}`;
+  if(correct === total) sortResult.innerText += ' — Perfect! You understand green hospital flow ✅';
+});
+
+resetSortBtn.addEventListener('click', initSort);
+
+/* initialize */
+buildMaze();
+initSort();
+
+/* helpful: disable dragselect on cards area while dragging - not necessary */
+
+/* ---- optional: keyboard accessibility improvements could be added ---- */
+</script>
+</body>
+</html>
